@@ -1,5 +1,3 @@
-use core::num;
-
 use crate::*;
 
 run_day!{day2}
@@ -37,10 +35,8 @@ pub fn part1(input: &str) -> u32 {
 pub fn part2(input: &str) -> u32 {
     input.lines().fold(0,
         |acc, l| {
-            let mut split = l.split_whitespace()
+            let split = l.split_whitespace().skip(2)
                     .map(|x| x.trim_end_matches([',', ';', ':']));
-            let id : u32 = split.nth(1).unwrap()
-                    .parse().unwrap();
 
             let numbers = split.clone().step_by(2).map(|n| n.parse::<u32>());
             let colours = split.skip(1).step_by(2);
