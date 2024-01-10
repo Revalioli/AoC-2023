@@ -27,13 +27,14 @@ fn read_data(file_name: &str) -> io::Result<String> {
 /* ==== Main ==== */
 
 mod day1;
+mod day2;
 
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let run_days =
         day_run_vec![
-            day1
+            day1, day2
         ];
 
     let args : Vec<String> = env::args().collect();
@@ -94,5 +95,14 @@ mod tests {
         4nineeightseven2\n\
         zoneight234\n\
         7pqrstsixteen", 281
+    }
+
+    test_day!{ day2, day2_test1, day2_test2,
+        "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n\
+        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\n\
+        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\n\
+        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\n\
+        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green",
+        8, 2286
     }
 }
