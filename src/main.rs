@@ -15,6 +15,15 @@ macro_rules! run_day {
     };
 }
 
+#[macro_export]
+macro_rules! iter2vars {
+    ( $i:ident, [$($e:ident),+] ) => {
+        $(
+            let $e = $i.next().unwrap();
+        )+
+    }
+}
+
 macro_rules! day_run_vec {
     ( $( $d:ident ),* ) => { [ $( $d::run, )* ] };
 }
@@ -30,13 +39,14 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let run_days =
         day_run_vec![
-            day1, day2, day3, day4
+            day1, day2, day3, day4, day5
         ];
 
     let args : Vec<String> = env::args().collect();
@@ -130,6 +140,43 @@ mod tests {
         Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36\n\
         Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11",
         13, 30
+    }
+
+    test_day!{ day5, day5_test1, day5_test2,
+        "seeds: 79 14 55 13\n\
+        \n\
+        seed-to-soil map\n\
+        50 98 2\n\
+        52 50 48\n\
+        \n\
+        soil-to-fertilizer map:\n\
+        0 15 37\n\
+        37 52 2\n\
+        39 0 15\n\
+        \n\
+        fertilizer-to-water map:\n\
+        49 53 8\n\
+        0 11 42\n\
+        42 0 7\n\
+        57 7 4\n\
+        \n\
+        water-to-light map:\n\
+        88 18 7\n\
+        18 25 70\n\
+        \n\
+        light-to-temperature map:\n\
+        45 77 23\n\
+        81 45 19\n\
+        68 64 13\n\
+        \n\
+        temperature-to-humidity map:\n\
+        0 69 1\n\
+        1 0 69\n\
+        \n\
+        humidity-to-location map:\n\
+        60 56 37\n\
+        56 93 4",
+        35, 46
     }
 
 }
