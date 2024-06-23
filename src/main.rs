@@ -40,13 +40,14 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let run_days =
         day_run_vec![
-            day1, day2, day3, day4, day5
+            day1, day2, day3, day4, day5, day6
         ];
 
     let args : Vec<String> = env::args().collect();
@@ -177,6 +178,12 @@ mod tests {
         60 56 37\n\
         56 93 4",
         35, 46
+    }
+
+    test_day!{ day6, day6_test1, day6_test2,
+        "Time:      7  15   30\n\
+        Distance:  9  40  200",
+        288, 71503
     }
 
 }
